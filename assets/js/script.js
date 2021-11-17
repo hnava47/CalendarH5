@@ -31,10 +31,10 @@ for (let i = 9; i < 18; i++) {
     const $calTextEl = $('<textarea>');
     const $calSubmitEl = $('<div>');
 
-    $calTimeEl.addClass('col-1 border border-left-0 text-right')
+    $calTimeEl.addClass('col-1 hour')
         .text(currHour);
 
-    $calTextEl.addClass('col-10 border');
+    $calTextEl.addClass('col-10 description');
 
     if (currMoment > moment(currHour, 'h:a').hour()) {
         $calTextEl.addClass('past');
@@ -44,7 +44,7 @@ for (let i = 9; i < 18; i++) {
         $calTextEl.addClass('present');
     }
 
-    $calSubmitEl.addClass('col-1 border rounded-right bg-info');
+    $calSubmitEl.addClass('col-1 saveBtn');
 
     $rowEl.attr('id', currHour)
         .addClass('row')
