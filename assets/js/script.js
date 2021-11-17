@@ -1,5 +1,5 @@
 const $currentDayEl = $('#currentDay');
-let meetings = JSON.parse(localStorage.getItem('meetings')) || [];)
+let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
 
 // inputs current date based on locale
 $currentDayEl.text(moment().format('dddd, MMMM Do'));
