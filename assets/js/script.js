@@ -1,6 +1,6 @@
 const $currDayEl = $('#currentDay');
 const $timeBlockEl = $('#time-block');
-const currMoment = moment().hour()
+const currMoment = moment().hour();
 // let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
 
 // inputs current date based on locale
@@ -16,39 +16,47 @@ $currDayEl.text(moment().format('dddd, MMMM Do'));
 
 // localStorage.setItem('meetings', JSON.stringify(meetings));
 
-for (let i = 9; i < 18; i++) {
-    let currHour = 0;
-    if (i > 12) {
-        currHour += i - 12;
-        currHour = currHour + 'pm'
-    } else {
-        currHour += i;
-        currHour = currHour + 'am'
-    }
+homePage();
 
-    const $rowEl = $('<div>');
-    const $calTimeEl = $('<div>');
-    const $calTextEl = $('<textarea>');
-    const $calSubmitEl = $('<div>');
+function homePage() {
+    for (let i = 9; i < 18; i++) {
+        let currHour = 0;
+        if (i > 12) {
+            currHour += i - 12;
+            currHour = currHour + 'pm';
+        } else {
+            currHour += i;
+            currHour = currHour + 'am';
+        }
 
-    $calTimeEl.addClass('col-1 hour')
-        .text(currHour);
+        const $rowEl = $('<div>');
+        const $calTimeEl = $('<div>');
+        const $calTextEl = $('<textarea>');
+        const $calSubmitEl = $('<div>');
+        const $submitIconEl = $('<i>');
 
-    $calTextEl.addClass('col-10 description');
+        $calTimeEl.addClass('col-1 hour')
+            .text(currHour);
 
-    if (currMoment > moment(currHour, 'h:a').hour()) {
-        $calTextEl.addClass('past');
-    } else if (currMoment < moment(currHour, 'h:a').hour()) {
-        $calTextEl.addClass('future');
-    } else {
-        $calTextEl.addClass('present');
-    }
+        $calTextEl.addClass('col-10 description');
 
-    $calSubmitEl.addClass('col-1 saveBtn');
+        if (currMoment > moment(currHour, 'h:a').hour()) {
+            $calTextEl.addClass('past');
+        } else if (currMoment < moment(currHour, 'h:a').hour()) {
+            $calTextEl.addClass('future');
+        } else {
+            $calTextEl.addClass('present');
+        }
 
-    $rowEl.attr('id', currHour)
-        .addClass('row')
-        .append($calTimeEl, $calTextEl, $calSubmitEl);
+        $submitIconEl.addClass('mt-4 fas fa-upload');
 
-    $timeBlockEl.append($rowEl);
+        $calSubmitEl.addClass('col-1 saveBtn')
+            .append($submitIconEl);
+
+        $rowEl.attr('id', currHour)
+            .addClass('row')
+            .append($calTimeEl, $calTextEl, $calSubmitEl);
+
+        $timeBlockEl.append($rowEl);
+    };
 }
