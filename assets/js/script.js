@@ -53,7 +53,7 @@ function homePage() {
         $calSubmitEl.addClass('col-1 saveBtn')
             .append($submitIconEl);
 
-        $rowEl.attr('id', currHour)
+        $rowEl.attr('id', i)
             .addClass('row')
             .append($calTimeEl, $calTextEl, $calSubmitEl);
 
