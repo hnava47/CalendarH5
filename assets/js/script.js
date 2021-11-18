@@ -2,40 +2,63 @@ $(document).ready(function() {
     const $currDayEl = $('#currentDay');
     const $timeBlockEl = $('#time-block');
     const currMoment = moment().hour();
-    let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
+    const currDate = moment().format('YYYY-MM-DD');
+    let calList = JSON.parse(localStorage.getItem('calendar')) || [];
 
     // inputs current date based on locale
     $currDayEl.text(moment().format('dddd, MMMM Do'));
 
-    // let currentMeet = {
-    //     time: '9am',
-    //     details: 'test'
-    // };
+    // Initialize homepage
+    if (calList.length > 0) {
+        if (calList[0]['date'] !== currDate) {
+            localStorage.removeItem('cal');
+            calList = [];
+            homePage();
+            refreshStorage();
+        } else {
+            homePage();
+        }
+    } else {
+        homePage();
+        refreshStorage();
+    }
 
-    // meetings.push(currentMeet);
-    // meetings.sort((a, b) => b.time - a.time);
+    // Get storage text description based on time id
+    function getDetails(id) {
+        let retList = calList.filter(function(item) {
+            return item.id === id;
+        });
+        if (retList.length === 0) {
+            return null;
+        } else {
+            return retList[0]['details'];
+        }
+    }
 
-    // localStorage.setItem('meetings', JSON.stringify(meetings));
+    // Refresh storage when list is null or next calendar day
+    function refreshStorage() {
+        let divList = $('.row');
 
-    homePage();
+        for (let i = 0; i < divList.length; i++) {
+            let currentMeet = {
+                date: currDate,
+                id: divList[i].children[0].textContent,
+                details: divList[i].children[1].textContent
+            };
 
-    function updateStorage(event) {
-        event.preventDefault();
+            calList.push(currentMeet);
 
-
+        localStorage.setItem('calendar', JSON.stringify(calList));
+        }
     }
 
     function homePage() {
-        localStorage.clear();
-        meetings = []
-
-        for (let i = 9; i < 18; i++) {
-            let currHour = 0;
-            if (i > 12) {
-                currHour += i - 12;
+        for (let i = 0; i < 9; i++) {
+            let currHour = i + 9;
+            if (currHour > 12) {
+                currHour -= 12;
                 currHour = currHour + 'pm';
             } else {
-                currHour += i;
                 currHour = currHour + 'am';
             }
 
@@ -48,7 +71,8 @@ $(document).ready(function() {
             $calTimeEl.addClass('col-1 hour')
                 .text(currHour);
 
-            $calTextEl.addClass('col-10 description');
+            $calTextEl.addClass('col-10 description')
+                .text(getDetails(currHour));
 
             if (currMoment > moment(currHour, 'h:a').hour()) {
                 $calTextEl.addClass('past');
@@ -60,14 +84,25 @@ $(document).ready(function() {
 
             $submitIconEl.addClass('mt-4 fas fa-upload');
 
-            $calSubmitEl.addClass('col-1 saveBtn')
+            $calSubmitEl.attr('id', i)
+                .addClass('col-1 saveBtn')
                 .append($submitIconEl);
 
-            $rowEl.attr('id', i)
-                .addClass('row')
+            $rowEl.addClass('row')
                 .append($calTimeEl, $calTextEl, $calSubmitEl);
 
             $timeBlockEl.append($rowEl);
         };
     }
+
+    $(document).on('click', '.saveBtn', function(event) {
+        event.preventDefault();
+
+        index = parseInt(this.id);
+
+        calList[index]['details'] = $(this).parent().children().eq(1).val();
+
+        localStorage.setItem('calendar', JSON.stringify(calList));
+    })
+
 });
