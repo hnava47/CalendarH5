@@ -11,7 +11,7 @@ $(document).ready(function() {
     // Initialize homepage
     if (calList.length > 0) {
         if (calList[0]['date'] !== currDate) {
-            localStorage.removeItem('cal');
+            localStorage.removeItem('calendar');
             calList = [];
             homePage();
             refreshStorage();
