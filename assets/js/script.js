@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     // Initialize homepage
     if (calList.length > 0) {
-        if (calList[0]['date'] !== currDate) {
+        if (calList[0].date !== currDate) {
             localStorage.removeItem('calendar');
             calList = [];
             homePage();
@@ -33,7 +33,7 @@ $(document).ready(function() {
         if (retList.length === 0) {
             return null;
         } else {
-            return retList[0]['details'];
+            return retList[0].details;
         }
     };
 
@@ -110,7 +110,7 @@ $(document).ready(function() {
         const $descText = $(this).parent().children().eq(1).val();
         const index = parseInt(this.id);
 
-        calList[index]['details'] = $descText;
+        calList[index].details= $descText;
 
         localStorage.setItem('calendar', JSON.stringify(calList));
 
