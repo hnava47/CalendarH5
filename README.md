@@ -21,11 +21,11 @@
 
 ## About The Project
 
-This project is meant to create and deploy a code quiz page. This page contains a set of coding questions which the user will answer within the 75 seconds. For each incorrect answer given, the time will be deducted by 10 seconds. The time can be viewed in the top right corner of the page. Below is a screenshot of the home page and sample question:
+This project is meant to create and deploy a calendar page. This page contains a set of meeting times which the user can update to reflect meeting descriptions and details. The background colors changed based on the current time of day. If the background color is gray, the event is in the past. If the background color is red, the even is in the present. If the background color is blue, the event is in the future. Below is a screenshot of the home page:
 
 
 You can access the updated website at the following link:
-* [Deployed Application]()
+* [Deployed Application](https://hnava47.github.io/CalendarH5/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
