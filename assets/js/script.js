@@ -23,7 +23,7 @@ $(document).ready(function() {
     } else {
         homePage();
         refreshStorage();
-    }
+    };
 
     // Get storage text description based on time id
     function getDetails(id) {
@@ -35,7 +35,7 @@ $(document).ready(function() {
         } else {
             return retList[0]['details'];
         }
-    }
+    };
 
     // Refresh storage when list is null or next calendar day
     function refreshStorage() {
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
         localStorage.setItem('calendar', JSON.stringify(calList));
         }
-    }
+    };
 
     function homePage() {
         for (let i = 0; i < 9; i++) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
             $timeBlockEl.append($rowEl);
         };
-    }
+    };
 
     $(document).on('click', '.saveBtn', function(event) {
         event.preventDefault();
@@ -110,11 +110,11 @@ $(document).ready(function() {
         const $descText = $(this).parent().children().eq(1).val();
         const index = parseInt(this.id);
 
-        calList[index]['details'] = $descText
+        calList[index]['details'] = $descText;
 
         localStorage.setItem('calendar', JSON.stringify(calList));
 
         $modalEl.text('Event has successfully been scheduled on ' + currLongDate + ' at ' + $timeText + '!');
-    })
+    });
 
 });
