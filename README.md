@@ -21,7 +21,7 @@
 
 ## About The Project
 
-This project is meant to create and deploy a calendar page. This page contains a set of meeting times which the user can update to reflect meeting descriptions and details. The background colors changed based on the current time of day. If the background color is gray, the event is in the past. If the background color is red, the even is in the present. If the background color is blue, the event is in the future. Below is a screenshot of the home page:
+This project is meant to create and deploy a calendar page. This page contains a set of meeting times which the user can update to reflect meeting descriptions and details. Once the description has been updated, the user can click the upload button to store the update. The background colors changed based on the current time of day. If the background color is gray, the event is in the past. If the background color is red, the even is in the present. If the background color is blue, the event is in the future. Below is a screenshot of the home page:
 
 
 You can access the updated website at the following link:

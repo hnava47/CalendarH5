@@ -58,6 +58,8 @@ $(document).ready(function() {
             if (currHour > 12) {
                 currHour -= 12;
                 currHour = currHour + 'pm';
+            } else if (currHour === 12) {
+                currHour = currHour + 'pm';
             } else {
                 currHour = currHour + 'am';
             }
