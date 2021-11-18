@@ -23,6 +23,11 @@
 
 This project is meant to create and deploy a calendar page. This page contains a set of meeting times which the user can update to reflect meeting descriptions and details. Once the description has been updated, the user can click the upload button to store the update. The background colors changed based on the current time of day. If the background color is gray, the event is in the past. If the background color is red, the even is in the present. If the background color is blue, the event is in the future. Below is a screenshot of the home page:
 
+![Primary Screenshot][primary-screenshot]
+
+Once the user has clicked on the upload button, they are prompted with a successful message. The user can exit using the _close_ button or clicking on the primary page.
+
+![Modal Screenshot][modal-screenshot]
 
 You can access the updated website at the following link:
 * [Deployed Application](https://hnava47.github.io/CalendarH5/)
@@ -35,5 +40,7 @@ Hector Nava - hector.r.nava44@gmail.com
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
+[modal-screenshot]: ./assets/images/modal-screenshot.png
+[primary-screenshot]: ./assets/images/primary-screenshot.png
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/hector-nava-mba
