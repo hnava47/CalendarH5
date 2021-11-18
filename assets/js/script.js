@@ -1,12 +1,14 @@
 $(document).ready(function() {
     const $currDayEl = $('#currentDay');
     const $timeBlockEl = $('#time-block');
+    const $modalEl = $('#modal-text');
     const currMoment = moment().hour();
     const currDate = moment().format('YYYY-MM-DD');
+    const currLongDate = moment().format('dddd, MMMM Do');
     let calList = JSON.parse(localStorage.getItem('calendar')) || [];
 
     // inputs current date based on locale
-    $currDayEl.text(moment().format('dddd, MMMM Do'));
+    $currDayEl.text(currLongDate);
 
     // Initialize homepage
     if (calList.length > 0) {
@@ -86,7 +88,11 @@ $(document).ready(function() {
 
             $submitIconEl.addClass('mt-4 fas fa-upload');
 
-            $calSubmitEl.attr('id', i)
+            $calSubmitEl.attr({
+                'id': i,
+                'data-toggle': 'modal',
+                'data-target': '#idModal'
+            })
                 .addClass('col-1 saveBtn')
                 .append($submitIconEl);
 
@@ -100,11 +106,15 @@ $(document).ready(function() {
     $(document).on('click', '.saveBtn', function(event) {
         event.preventDefault();
 
-        index = parseInt(this.id);
+        const $timeText = $(this).parent().children().eq(0).text();
+        const $descText = $(this).parent().children().eq(1).val();
+        const index = parseInt(this.id);
 
-        calList[index]['details'] = $(this).parent().children().eq(1).val();
+        calList[index]['details'] = $descText
 
         localStorage.setItem('calendar', JSON.stringify(calList));
+
+        $modalEl.text('Event has successfully been scheduled on ' + currLongDate + ' at ' + $timeText + '!');
     })
 
 });
